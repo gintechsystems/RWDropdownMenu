@@ -26,7 +26,6 @@
         self.backgroundColor = [UIColor clearColor];
         self.imageView.image = nil;
         self.selectedBackgroundView = [UIView new];
-        
     }
     return self;
 }

@@ -45,6 +45,9 @@ typedef NS_ENUM(NSInteger, RWDropdownMenuStyle) {
 
 @property (nonatomic, copy, readonly) NSAttributedString *attributedText;
 
+@property (nonatomic, copy, readonly) NSString *originalText;
+@property (nonatomic, readonly) NSInteger tagId;
+
 /**
  *  Item action block.
  */

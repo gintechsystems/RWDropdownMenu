@@ -46,6 +46,8 @@
 @property (nonatomic, copy) NSAttributedString *attributedText;
 @property (nonatomic, copy) void (^action)(void);
 @property (nonatomic, strong) UIImage *image;
+@property (nonatomic, copy) NSString *originalText;
+@property (nonatomic, assign) NSInteger tagId;
 
 @end
 
@@ -57,6 +59,17 @@
     item.text = text;
     item.image = image;
     item.action = action;
+    return item;
+}
+
++ (instancetype)itemWithText:(NSString *)text original:(NSString *)originalText tag:(NSInteger)tag
+{
+    RWDropdownMenuItem *item = [self new];
+    item.text = text;
+    item.image = nil;
+    item.action = nil;
+    item.originalText = originalText;
+    item.tagId = tag;
     return item;
 }
 
