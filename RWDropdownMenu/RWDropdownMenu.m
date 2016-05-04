@@ -150,6 +150,8 @@ static NSString * const CellId = @"RWDropdownMenuCell";
         vc = [vc performSelector:@selector(topViewController)];
     }
     
+    [self delegate];
+    
     [self dismissViewControllerAnimated:YES completion:^{
         [vc.view setNeedsLayout];
         if ([vc respondsToSelector:@selector(collectionView)])
@@ -157,6 +159,8 @@ static NSString * const CellId = @"RWDropdownMenuCell";
             UICollectionView *collectionView = [vc performSelector:@selector(collectionView)];
             [collectionView.collectionViewLayout invalidateLayout];
         }
+        
+        [self didDismissRWDropdownMenu];
     }];
 }
 
@@ -287,6 +291,14 @@ static NSString * const CellId = @"RWDropdownMenuCell";
     }
     
     return size;
+}
+
+- (void)didDismissRWDropdownMenu {
+    id<RWDropdownMenuDelegate> strongDelegate = self.delegate;
+    
+    if ([strongDelegate respondsToSelector:@selector(didDismissDropdownMenu)]) {
+        [strongDelegate didDismissDropdownMenu];
+    }
 }
 
 #pragma mark - collection view

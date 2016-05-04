@@ -68,7 +68,7 @@ typedef NS_ENUM(NSInteger, RWDropdownMenuStyle) {
 @end
 
 
-
+@protocol RWDropdownMenuDelegate;
 
 @interface RWDropdownMenu : UIViewController
 
@@ -81,6 +81,8 @@ typedef NS_ENUM(NSInteger, RWDropdownMenuStyle) {
  *  Collection view for displaying item cells.
  */
 @property (nonatomic, strong, readonly) UICollectionView *collectionView;
+
+@property (nonatomic, weak) id<RWDropdownMenuDelegate> delegate;
 
 /**
  *  Show a fullscreen dropdown menu from a navigation bar item.
@@ -112,4 +114,8 @@ typedef NS_ENUM(NSInteger, RWDropdownMenuStyle) {
                                 withItems:(NSArray *)items
                                completion:(void (^)(void))completion;
 
+@end
+
+@protocol RWDropdownMenuDelegate <NSObject>
+- (void)didDismissDropdownMenu;
 @end
